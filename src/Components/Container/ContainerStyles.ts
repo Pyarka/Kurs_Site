@@ -84,3 +84,8 @@ export const StartButtonText = styled.div `
     border-radius: 8px;
     background-color: rgb(255, 255, 89);
 `;
+
+export const Description = styled.div`
+    text-align: center;
+    font-size: 18px;
+`;

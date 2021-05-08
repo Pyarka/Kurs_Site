@@ -9,7 +9,8 @@ import {Person,
     Result,
     BackButton,
     TextResult,
-    StartButtonText,} from "./ContainerStyles";
+    StartButtonText,
+    Description,} from "./ContainerStyles";
 import InputField from "../InputField/InputField";
 import {mockData1, mockData2} from "./Helper";
 
@@ -17,7 +18,7 @@ const Container = (): ReactElement | null => {
     const [whatDoing, setDoing] = useState(0);
     const [answer, getAnswer] = useState(mockData1);
     const [result, getResult] = useState(0);
-    const [variant, setVariant] = useState(0);
+    const [vari, setVariant] = useState(0);
 
 
     const changeValue = (masValue: string, num: number) => {
@@ -40,22 +41,33 @@ const Container = (): ReactElement | null => {
     }
 
     const randomVariant = () => {
-        setVariant(Math.floor(Math.random() * (2 - 1 + 1) + 1));
-        console.log(variant);
-        if(variant === 1){
+        const e = Math.floor(Math.random() * (3 - 1) + 1);
+        setVariant(e);
+        console.log("var:", vari, "e:", e);
+        if(vari === 1){
+            console.log("var2:", vari);
             getAnswer(mockData1);
         }else{
+            console.log("var2:", vari);
             getAnswer(mockData2);
         }
-        return null;
     }
 
     const numOfPoints = () => {
-        if(variant === 1){
+        if(vari === 1){
+            console.log("var:", vari);
             return("14")
         }else{
+            console.log("var2:", vari);
             return("11")
         }
+    }
+
+    const renderDescription = () => {
+        return(
+            <Description>В следующем тесте необходимо заполнить поля пропущенными буквами и знаками препинания.
+                Внимание! На прохождение теста у вас есть 1,5 минуты. </Description>
+        )
     }
 
     const renderField = (index: number) => {
@@ -124,9 +136,11 @@ const Container = (): ReactElement | null => {
     }
 
     const renderCurrentVariant = (): ReactElement | null => {
-        if(variant === 1){
+        if(vari === 1){
+            console.log("12var:", vari);
             return renderVariant1();
         }else{
+            console.log("13var:", vari);
             return renderVariant2();
         }
     }
@@ -143,13 +157,15 @@ const Container = (): ReactElement | null => {
         if(0 === whatDoing){
             return (
                 <StartButton onClick={() => {
-                    randomVariant()
-                    setDoing(1)
+
+                    console.log("1  ", vari);
+                    setDoing(1);
                 }}>
                     <StartButtonText>Начать тестирование</StartButtonText>
                 </StartButton>
             )
         } else if(1 === whatDoing){
+            randomVariant();
             return (
                 <Task>
                     {renderText()}
@@ -162,6 +178,7 @@ const Container = (): ReactElement | null => {
         }
         return (
             <Result>
+                {console.log(vari)}
                 <p></p>
                 Ваш результат:
                 <TextResult>{result} из {numOfPoints()}</TextResult>

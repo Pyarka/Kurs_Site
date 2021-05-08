@@ -9,72 +9,72 @@ export interface AnswersInterface {
 export const mockData1: AnswersInterface[] = [
         {
             num: 0,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "и",
         },
         {
             num: 1,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "енн",
         },
         {
             num: 2,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "ую",
         },
         {
             num: 3,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "е",
         },
         {
             num: 4,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "его",
         },
         {
             num: 5,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "тся",
         },
         {
             num: 6,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "иде",
         },
         {
             num: 7,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "ят",
         },
         {
             num: 8,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: ",",
         },
         {
             num: 9,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "е",
         },
         {
             num: 10,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "а",
         },
         {
             num: 11,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "а",
         },
         {
             num: 12,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "ться",
         },
         {
             num: 13,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "хг",
         },
     ]
@@ -82,57 +82,57 @@ export const mockData1: AnswersInterface[] = [
 export const mockData2: AnswersInterface[] = [
         {
             num: 0,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "сс",
         },
         {
             num: 1,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "е",
         },
         {
             num: 2,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "о",
         },
         {
             num: 3,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "тся",
         },
         {
             num: 4,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: ",",
         },
         {
             num: 5,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "и",
         },
         {
             num: 6,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "а",
         },
         {
             num: 7,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "ться",
         },
         {
             num: 8,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "е",
         },
         {
             num: 9,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "е",
         },
         {
             num: 10,
-            currentAnswer: "",
+            currentAnswer: " ",
             rightAnswer: "ться",
         },
 ]
