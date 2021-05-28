@@ -1,16 +1,23 @@
 import styled from "styled-components";
 
-import fon from "../../Assets/letters.png";
+import fon from "../../Assets/Smoller_letters.png";
 
 export const Person = styled.div `
     display: flex;
     flex-direction: column;
     height: 600px;
+    img {
+        heigth: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+    }
     `;
 export const Header = styled.div `
     display: flex;
     height: 10%;
-    background-color: rgb(62, 172, 66);
+    background-color: rgb(255, 247, 20);
+    z-index: 1;
 `;
 export const Body = styled.div `
     display: flex;
@@ -18,7 +25,7 @@ export const Body = styled.div `
     width: 100%;
     justify-content: center;
     align-items: center;
-    background: url(fon) 0 0/100% 100% no-repeat;
+    z-index: 1;
     `;
 export const StartButton = styled.div `
     display: table;
@@ -28,7 +35,8 @@ export const Task = styled.div `
     margin: 5% 0 0 0;
     min-height: 200px;
     width: 700px;
-    border: yellow 4px solid
+    border: rgb(255, 247, 20) 4px solid;
+    background-color: #ffffff;
 `;
 export const Text = styled.div `
     font-family: monospace;
@@ -42,10 +50,10 @@ export const GetResultButton = styled.div `
     cursor: pointer;
     min-width: 180px;
     min-height: 30px;
-    border: 3px solid;
+    border: rgb(255, 247, 20) 3px solid;
     text-align: center;
-    color: rgb(236,137,6);
-    background-color: yellow;
+    color: rgb(255, 174, 0);
+    background-color: #ffffff;
     margin: 20px 5% 10px 70%;
     font-size: 20px;
     font-weight: 500;
@@ -77,20 +85,20 @@ export const BackButton = styled.div `
 export const StartButtonText = styled.div `
     display: table-cell;
     font-size: 30px;
-    color: rgb(0, 50, 200);
+    color: rgb(255, 174, 0);
     font-family: monospace;
     text-align: center;
     height: 100px;
     width: 300px;
     cursor: pointer;
     vertical-align: middle;
-    border: rgb(0, 255, 204) 4px solid;
-    border-radius: 20%;
-    background-color: rgb(143, 255, 255);
+    border: rgb(255, 247, 20) 4px solid;
+    background-color: #ffffff;
 `;
 
 export const Description = styled.div`
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
     height: 120px;
 `;

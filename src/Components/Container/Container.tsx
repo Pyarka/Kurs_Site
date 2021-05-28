@@ -13,6 +13,7 @@ import {Person,
     Description,} from "./ContainerStyles";
 import InputField from "../InputField/InputField";
 import {mockData1, mockData2} from "./Helper";
+import fon from "../../Assets/letters.png"
 
 const Container = (): ReactElement | null => {
     const [whatDoing, setDoing] = useState(0);
@@ -194,11 +195,13 @@ const Container = (): ReactElement | null => {
 
     return (
         <Person>
+            <img src={fon}/>
             <Header>
 
             </Header>
             <Body>
                 {renderButton()}
+
             </Body>
         </Person>
     )
