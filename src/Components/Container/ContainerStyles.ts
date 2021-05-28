@@ -1,23 +1,28 @@
 import styled from "styled-components";
 
+import fon from "../../Assets/letters.png";
+
 export const Person = styled.div `
     display: flex;
     flex-direction: column;
     height: 600px;
-`;
+    `;
 export const Header = styled.div `
     display: flex;
     height: 10%;
-    background-color: rgb(255, 255, 89);
+    background-color: rgb(62, 172, 66);
 `;
 export const Body = styled.div `
     display: flex;
-    height: 75%;
+    height: 90%;
+    width: 100%;
     justify-content: center;
     align-items: center;
-`;
+    background: url(fon) 0 0/100% 100% no-repeat;
+    `;
 export const StartButton = styled.div `
     display: table;
+    width: 300px;
 `;
 export const Task = styled.div `
     margin: 5% 0 0 0;
@@ -72,20 +77,20 @@ export const BackButton = styled.div `
 export const StartButtonText = styled.div `
     display: table-cell;
     font-size: 30px;
-    color: rgb(236, 137, 6);
+    color: rgb(0, 50, 200);
     font-family: monospace;
     text-align: center;
     height: 100px;
     width: 300px;
     cursor: pointer;
-    background-color: red;
     vertical-align: middle;
-    border: rgb(255, 217, 89) 4px solid;
-    border-radius: 8px;
-    background-color: rgb(255, 255, 89);
+    border: rgb(0, 255, 204) 4px solid;
+    border-radius: 20%;
+    background-color: rgb(143, 255, 255);
 `;
 
 export const Description = styled.div`
     text-align: center;
     font-size: 18px;
+    height: 120px;
 `;

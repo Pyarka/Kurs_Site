@@ -18,8 +18,21 @@ const Container = (): ReactElement | null => {
     const [whatDoing, setDoing] = useState(0);
     const [answer, getAnswer] = useState(mockData1);
     const [result, getResult] = useState(0);
-    const [vari, setVariant] = useState(0);
+    const [variant, setVariant] = useState(0);
 
+    useEffect(() => {
+        console.log("var:", variant);
+        if(variant === 1){
+            console.log("var2:", variant);
+            getAnswer(mockData1);
+        }else if(variant === 2){
+            console.log("var2:", variant);
+            getAnswer(mockData2);
+        }else{
+            console.log("error");
+            getAnswer(mockData1);
+        }
+    }, [variant])
 
     const changeValue = (masValue: string, num: number) => {
             const newArray = [...answer];
@@ -28,45 +41,31 @@ const Container = (): ReactElement | null => {
     }
 
     const checkAnswer = () => {
-        answer.map((Item) => {
-            if(Item.currentAnswer === Item.rightAnswer){
-                getResult(result + 1)
-            }else{
-                if(result !== 0){
-                    getResult(result - 1);
-                }
-            }
-            return{currentAnswer: Item.currentAnswer, rightAnswer: Item.rightAnswer}
+        console.log("ans:", answer);
+        const newAnswer = answer.filter((Item) => {
+            return(Item.currentAnswer === Item.rightAnswer)
         })
+        getResult(newAnswer.length);
     }
 
     const randomVariant = () => {
-        const e = Math.floor(Math.random() * (3 - 1) + 1);
-        setVariant(e);
-        console.log("var:", vari, "e:", e);
-        if(vari === 1){
-            console.log("var2:", vari);
-            getAnswer(mockData1);
-        }else{
-            console.log("var2:", vari);
-            getAnswer(mockData2);
-        }
+        setVariant(Math.ceil(Math.random() * 2));
     }
 
     const numOfPoints = () => {
-        if(vari === 1){
-            console.log("var:", vari);
+        if(variant === 1){
+            console.log("var:", variant);
             return("14")
         }else{
-            console.log("var2:", vari);
+            console.log("var2:", variant);
             return("11")
         }
     }
 
     const renderDescription = () => {
         return(
-            <Description>В следующем тесте необходимо заполнить поля пропущенными буквами и знаками препинания.
-                Внимание! На прохождение теста у вас есть 1,5 минуты. </Description>
+            <Description><p>В следующем тесте необходимо заполнить поля пропущенными буквами и знаками препинания.</p>
+                <p>Внимание! На прохождение теста у вас есть 1,5 минуты. </p></Description>
         )
     }
 
@@ -75,14 +74,10 @@ const Container = (): ReactElement | null => {
             <InputField
                 value={answer[index]["currentAnswer"]}
                 onChange={(value) => {
-                    console.log("onChange", answer[index], ", ", value);
                     changeValue(value, index);
-                    console.log("onChange", answer[index], ", ", value);
                 }}
                 onBlur={(value) => {
-                    console.log("onBlur", answer[index], ", ", value);
                     changeValue(value, index);
-                    console.log("onBlur", answer[index], ", ", value);
                 }}/>
         )
     }
@@ -136,12 +131,12 @@ const Container = (): ReactElement | null => {
     }
 
     const renderCurrentVariant = (): ReactElement | null => {
-        if(vari === 1){
-            console.log("12var:", vari);
+        if(variant === 1){
             return renderVariant1();
-        }else{
-            console.log("13var:", vari);
+        }else if(variant === 2){
             return renderVariant2();
+        }else{
+            return renderVariant1();
         }
     }
 
@@ -156,21 +151,32 @@ const Container = (): ReactElement | null => {
     const renderButton = (): ReactElement | null => {
         if(0 === whatDoing){
             return (
-                <StartButton onClick={() => {
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
+                >
+                    {renderDescription()}
+                    <StartButton onClick={() => {
+                        randomVariant();
+                        console.log("variant cp  ", variant);
+                        setDoing(1);
+                    }}>
+                        <StartButtonText>Начать тестирование</StartButtonText>
+                    </StartButton>
+                </div>
 
-                    console.log("1  ", vari);
-                    setDoing(1);
-                }}>
-                    <StartButtonText>Начать тестирование</StartButtonText>
-                </StartButton>
             )
         } else if(1 === whatDoing){
-            randomVariant();
+
             return (
                 <Task>
                     {renderText()}
                     <GetResultButton onClick={() => {
                         checkAnswer();
+                        console.log(answer)
+                        console.log(result)
                         setDoing(2);
                     }}>Узнать результат</GetResultButton>
                 </Task>
@@ -178,7 +184,6 @@ const Container = (): ReactElement | null => {
         }
         return (
             <Result>
-                {console.log(vari)}
                 <p></p>
                 Ваш результат:
                 <TextResult>{result} из {numOfPoints()}</TextResult>

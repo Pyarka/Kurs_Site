@@ -10,6 +10,7 @@ interface InputFieldProps {
 const InputField = ({value, onChange, onBlur}: InputFieldProps) => {
     return (
         <Field type="text"
+               valueWidth={value.length}
                 onChange={(e) => onChange(e.target.value)}
                onBlur={(e) => onBlur(e.target.value, "")}
                value={ value ? value : ""}/>
