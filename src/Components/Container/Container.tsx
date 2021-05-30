@@ -10,7 +10,8 @@ import {Person,
     BackButton,
     TextResult,
     StartButtonText,
-    Description,} from "./ContainerStyles";
+    Description,
+    Time,} from "./ContainerStyles";
 import InputField from "../InputField/InputField";
 import {mockData1, mockData2} from "./Helper";
 import fon from "../../Assets/letters.png"
@@ -20,20 +21,24 @@ const Container = (): ReactElement | null => {
     const [answer, getAnswer] = useState(mockData1);
     const [result, getResult] = useState(0);
     const [variant, setVariant] = useState(0);
+    const [time, setTime] = useState("");
 
     useEffect(() => {
-        console.log("var:", variant);
         if(variant === 1){
-            console.log("var2:", variant);
             getAnswer(mockData1);
         }else if(variant === 2){
-            console.log("var2:", variant);
             getAnswer(mockData2);
-        }else{
-            console.log("error");
-            getAnswer(mockData1);
         }
     }, [variant])
+
+    useEffect(() => {
+    }, [time])
+
+    const answerNull = () => {
+        const newArray = [...answer];
+        newArray.forEach(element => element.currentAnswer = "");
+        getAnswer(newArray);
+    }
 
     const changeValue = (masValue: string, num: number) => {
             const newArray = [...answer];
@@ -42,7 +47,6 @@ const Container = (): ReactElement | null => {
     }
 
     const checkAnswer = () => {
-        console.log("ans:", answer);
         const newAnswer = answer.filter((Item) => {
             return(Item.currentAnswer === Item.rightAnswer)
         })
@@ -53,14 +57,36 @@ const Container = (): ReactElement | null => {
         setVariant(Math.ceil(Math.random() * 2));
     }
 
+    const taskTimer = () => {
+        let i = 90;
+        let min = 0;
+        let sec = 0;
+        let timer = setInterval(() => {
+            min = Math.floor(i / 60);
+            sec = i - 60 * Math.floor(i / 60);
+            if(sec < 10) {
+                setTime(String(min) + ":0" + String(sec));
+            }else {
+                setTime(String(min) + ":" + String(sec));
+            }
+            i--;
+            if(i === 0) {
+                clearInterval(timer);
+                setTimeout(() => {
+                    setDoing(2);
+                    checkAnswer()}, 1000);
+            }
+        }, 1000);
+
+    }
+
     const numOfPoints = () => {
         if(variant === 1){
-            console.log("var:", variant);
             return("14")
         }else{
-            console.log("var2:", variant);
-            return("11")
+            return("10")
         }
+
     }
 
     const renderDescription = () => {
@@ -73,7 +99,7 @@ const Container = (): ReactElement | null => {
     const renderField = (index: number) => {
         return (
             <InputField
-                value={answer[index]["currentAnswer"]}
+                value={!answer[index] || answer[index]["currentAnswer"] === undefined ? "" : answer[index]["currentAnswer"]}
                 onChange={(value) => {
                     changeValue(value, index);
                 }}
@@ -124,7 +150,7 @@ const Container = (): ReactElement | null => {
                         {renderField(6)} в течени
                         {renderField(7)} недели.</p>
                     <p>На следующей недел
-                        {renderField(8)}мы можем договори
+                        {renderField(8)} мы можем договори
                         {renderField(9)} и передать его вам.</p>
                 </>
             )
@@ -137,7 +163,7 @@ const Container = (): ReactElement | null => {
         }else if(variant === 2){
             return renderVariant2();
         }else{
-            return renderVariant1();
+            return(<p>ERROR</p>)
         }
     }
 
@@ -150,7 +176,7 @@ const Container = (): ReactElement | null => {
     }
 
     const renderButton = (): ReactElement | null => {
-        if(0 === whatDoing){
+        if(0 === whatDoing) {
             return (
                 <div style={{
                     display: "flex",
@@ -161,8 +187,8 @@ const Container = (): ReactElement | null => {
                     {renderDescription()}
                     <StartButton onClick={() => {
                         randomVariant();
-                        console.log("variant cp  ", variant);
                         setDoing(1);
+                        taskTimer();
                     }}>
                         <StartButtonText>Начать тестирование</StartButtonText>
                     </StartButton>
@@ -173,11 +199,10 @@ const Container = (): ReactElement | null => {
 
             return (
                 <Task>
+                    <Time>Осталось времени: {time}</Time>
                     {renderText()}
                     <GetResultButton onClick={() => {
                         checkAnswer();
-                        console.log(answer)
-                        console.log(result)
                         setDoing(2);
                     }}>Узнать результат</GetResultButton>
                 </Task>
@@ -188,7 +213,10 @@ const Container = (): ReactElement | null => {
                 <p></p>
                 Ваш результат:
                 <TextResult>{result} из {numOfPoints()}</TextResult>
-                <BackButton onClick={() => setDoing(0)}>Далее</BackButton>
+                <BackButton onClick={() => {
+                    answerNull();
+                    setDoing(0)
+                }}>Далее</BackButton>
             </Result>
         );
     }

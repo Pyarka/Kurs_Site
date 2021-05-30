@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
-import fon from "../../Assets/Smoller_letters.png";
-
 export const Person = styled.div `
     display: flex;
     flex-direction: column;
     height: 600px;
     img {
-        heigth: 100%;
+        height: 100%;
         width: 100%;
         position: absolute;
         z-index: 0;
+        filter: opacity(0.6);
     }
     `;
 export const Header = styled.div `
@@ -64,7 +63,8 @@ export const Result = styled.div `
     flex-direction: column;
     width: 300px;
     height: 150px;
-    border: yellow 3px solid;
+    background-color: #ffffff;
+    border: rgb(255, 247, 20) 3px solid;
 `;
 export const TextResult = styled.div `
     text-align: center;
@@ -78,7 +78,8 @@ export const BackButton = styled.div `
     text-align: center;
     justify-content: center;
     font-weight: 700;
-    border: tomato 1px solid;
+    color: rgb(255, 174, 0);
+    border: rgb(255, 247, 20) 3px solid;
     height: 20px;
     width: 90px;
 `;
@@ -101,4 +102,10 @@ export const Description = styled.div`
     font-size: 20px;
     font-weight: bold;
     height: 120px;
+`;
+
+export const Time = styled.div`
+    margin: 5px 5%;
+    font-size: 16px;
+    font-weight: 600;
 `;

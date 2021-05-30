@@ -108,17 +108,17 @@ export const mockData2: AnswersInterface[] = [
         {
             num: 5,
             currentAnswer: "",
-            rightAnswer: "и",
+            rightAnswer: "а",
         },
         {
             num: 6,
             currentAnswer: "",
-            rightAnswer: "а",
+            rightAnswer: "ться",
         },
         {
             num: 7,
             currentAnswer: "",
-            rightAnswer: "ться",
+            rightAnswer: "е",
         },
         {
             num: 8,
@@ -127,11 +127,6 @@ export const mockData2: AnswersInterface[] = [
         },
         {
             num: 9,
-            currentAnswer: "",
-            rightAnswer: "е",
-        },
-        {
-            num: 10,
             currentAnswer: "",
             rightAnswer: "ться",
         },
