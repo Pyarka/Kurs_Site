@@ -207,7 +207,7 @@ const Container = (): ReactElement | null => {
                         setDoing(2);
                         clearInterval(timer);
                         setTime("");
-                    }}>Узнать результат</GetResultButton>
+                    }}>Закончить</GetResultButton>
                 </Task>
             )
         }
