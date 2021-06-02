@@ -14,7 +14,9 @@ import {Person,
     Time,} from "./ContainerStyles";
 import InputField from "../InputField/InputField";
 import {mockData1, mockData2} from "./Helper";
-import fon from "../../Assets/letters.png"
+import fon from "../../Assets/letters.png";
+
+let timer: NodeJS.Timeout;
 
 const Container = (): ReactElement | null => {
     const [whatDoing, setDoing] = useState(0);
@@ -23,6 +25,7 @@ const Container = (): ReactElement | null => {
     const [variant, setVariant] = useState(0);
     const [time, setTime] = useState("");
 
+
     useEffect(() => {
         if(variant === 1){
             getAnswer(mockData1);
@@ -30,9 +33,6 @@ const Container = (): ReactElement | null => {
             getAnswer(mockData2);
         }
     }, [variant])
-
-    useEffect(() => {
-    }, [time])
 
     const answerNull = () => {
         const newArray = [...answer];
@@ -61,7 +61,8 @@ const Container = (): ReactElement | null => {
         let i = 90;
         let min = 0;
         let sec = 0;
-        let timer = setInterval(() => {
+
+        timer = setInterval(() => {
             min = Math.floor(i / 60);
             sec = i - 60 * Math.floor(i / 60);
             if(sec < 10) {
@@ -72,12 +73,12 @@ const Container = (): ReactElement | null => {
             i--;
             if(i === 0) {
                 clearInterval(timer);
+                setTime("");
                 setTimeout(() => {
                     setDoing(2);
                     checkAnswer()}, 1000);
             }
         }, 1000);
-
     }
 
     const numOfPoints = () => {
@@ -204,6 +205,8 @@ const Container = (): ReactElement | null => {
                     <GetResultButton onClick={() => {
                         checkAnswer();
                         setDoing(2);
+                        clearInterval(timer);
+                        setTime("");
                     }}>Узнать результат</GetResultButton>
                 </Task>
             )
@@ -212,7 +215,7 @@ const Container = (): ReactElement | null => {
             <Result>
                 <p></p>
                 Ваш результат:
-                <TextResult>{result} из {numOfPoints()}</TextResult>
+                <TextResult>{result} из {answer.length}</TextResult>
                 <BackButton onClick={() => {
                     answerNull();
                     setDoing(0)

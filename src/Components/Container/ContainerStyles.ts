@@ -29,6 +29,7 @@ export const Body = styled.div `
 export const StartButton = styled.div `
     display: table;
     width: 300px;
+    margin: 15px;
 `;
 export const Task = styled.div `
     margin: 5% 0 0 0;
@@ -105,7 +106,7 @@ export const Description = styled.div`
 `;
 
 export const Time = styled.div`
-    margin: 5px 5%;
-    font-size: 16px;
-    font-weight: 600;
+    margin: 5px 5% 5px 65%;
+    font-size: 17px;
+    font-weight: 650;
 `;
