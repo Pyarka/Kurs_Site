@@ -42,13 +42,13 @@ const Container = (): ReactElement | null => {
 
     const changeValue = (masValue: string, num: number) => {
             const newArray = [...answer];
-            newArray[num]["currentAnswer"] = `${masValue}`;
+            newArray[num]["currentAnswer"] = `${masValue}`.toLowerCase();
             getAnswer(newArray);
     }
 
     const checkAnswer = () => {
         const newAnswer = answer.filter((Item) => {
-            return(Item.currentAnswer === Item.rightAnswer)
+            return(Item.currentAnswer.toLowerCase() === Item.rightAnswer)
         })
         getResult(newAnswer.length);
     }
@@ -74,9 +74,8 @@ const Container = (): ReactElement | null => {
             if(i === 0) {
                 clearInterval(timer);
                 setTime("");
-                setTimeout(() => {
-                    setDoing(2);
-                    checkAnswer()}, 1000);
+                checkAnswer();
+                setDoing(2);
             }
         }, 1000);
     }
@@ -93,6 +92,7 @@ const Container = (): ReactElement | null => {
     const renderDescription = () => {
         return(
             <Description><p>В следующем тесте необходимо заполнить поля пропущенными буквами и знаками препинания.</p>
+                <p>Поля могут оставаться пустыми. Заполнять поля нужно только строчными буквами.</p>
                 <p>Внимание! На прохождение теста у вас есть 1,5 минуты. </p></Description>
         )
     }

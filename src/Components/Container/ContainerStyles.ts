@@ -27,6 +27,7 @@ export const Body = styled.div `
     z-index: 1;
     `;
 export const StartButton = styled.div `
+    box-shadow: 2px 2px 5px black; 
     display: table;
     width: 300px;
     margin: 15px;
@@ -47,6 +48,7 @@ export const Text = styled.div `
     margin: 10px 5%;
 `;
 export const GetResultButton = styled.div `
+    box-shadow: 2px 2px 5px black;
     cursor: pointer;
     min-width: 180px;
     min-height: 30px;
@@ -75,6 +77,7 @@ export const TextResult = styled.div `
     font-weight: 900;
 `;
 export const BackButton = styled.div `
+    box-shadow: 2px 2px 5px black;
     cursor: pointer;
     text-align: center;
     justify-content: center;
@@ -102,7 +105,6 @@ export const Description = styled.div`
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    height: 120px;
 `;
 
 export const Time = styled.div`
